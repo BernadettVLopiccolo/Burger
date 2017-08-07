@@ -1,8 +1,40 @@
 var express = require("express");
-var burger = require("burger");
-var app = express();
-app get("/", function(req, res) {
-	res.send("")
+var router = express.Router();
+var burgers = require("../models/burger.js");
+router.get("/", function(req, res) {
+  res.redirect("/burgers")
 });
 
-module.exports = burgers_controller;
+router.get("/burgers", function(req, res) {
+  burgers.all(function(data) {
+    var hbsObject = {
+      burgerss: data
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
+  });
+});
+
+router.post("/burgers/create", function(req, res) {
+  burgers.create([
+    "burger_name"
+  ], [
+    req.body.burger_name
+  ], function() {
+    res.redirect("/burgers");
+  });
+});
+
+router.put("/burgers/update/:id", function(req, res) {
+  var condition = "id = " + req.params.id;
+
+  console.log("condition", condition);
+
+  burgers.update({
+    devoured: req.body.devoured
+  }, condition, function() {
+    res.redirect("/burgers");
+  });
+});
+
+module.exports = router;

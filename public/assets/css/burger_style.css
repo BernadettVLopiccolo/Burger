@@ -1,4 +1,31 @@
 body {
-	/*background-image: url("../burger.jpg");*/
-	background-color: #000000;
-}
+		background-color: #fff9bb;
+	}
+	.header {
+		/*background-image: url("../img/burger.jpg");*/
+		text-align: center;
+
+	}
+	h1 {
+		text-align: center;
+	}
+	p {
+		text-align: center;
+	}
+	.submit {
+		margin-top: 10px;
+		width: 100px;
+		height: 40px;
+		border-radius: 4px;
+		background-color: #348fc9;
+		color: #fff;
+	}
+    .addBurger {
+    	font-size: 16px;
+    	width: 200px;
+    	height: 50px;
+    }
+
+    .buttonHolder {
+    	text-align: center;
+    }

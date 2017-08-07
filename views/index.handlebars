@@ -1,9 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-  <button class="submit" type="button">Submit</button>
-</body>
-</html>
+<div class="header">
+  <img src="../public/assets/img/burgerGif.gif"">
+</div>
+<h1>Eat-Da-Burger!</h1>
+<div class="row">
+<div class="col-md-6">
+<ul>
+  {{#each burgers}}
+  {{#unless this.devoured}}
+  <li>
+    <p>
+      {{this.id}}. {{this.burger_name}}
+    </p>
+      <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+      <input type="hidden" name="devoured" value="true">
+        <button type="submit">Devour it!</button>
+      </form>
+  </li>
+  {{/unless}}
+  {{/each}}
+</ul>
+</div>
+
+  <div class="col-md-6">
+    <ul>
+      {{#each burgers}}
+      {{#if this.devoured}}
+      <li>
+        <p>{{this.burger_name}}</p>
+      </li>
+      <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+      <input type="hidden" name="devoured" value="false">
+      {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
+<form method="POST" action="burger/create" class="create_new_form">
+  <textarea type="text" name="burger"></textarea>
+  <button type="submit">Submit</button>
+  <p>Enter a burger you want to eat Click the "Submit" button.</p>
+</form>
+
