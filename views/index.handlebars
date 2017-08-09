@@ -1,43 +1,51 @@
 <div class="header">
-  <img src="../public/assets/img/burgerGif.gif"">
+    <img src="../assets/img/burgerGif.gif" ">
 </div>
 <h1>Eat-Da-Burger!</h1>
-<div class="row">
-<div class="col-md-6">
-<ul>
-  {{#each burgers}}
-  {{#unless this.devoured}}
-  <li>
-    <p>
-      {{this.id}}. {{this.burger_name}}
-    </p>
-      <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-      <input type="hidden" name="devoured" value="true">
-        <button type="submit">Devour it!</button>
-      </form>
-  </li>
-  {{/unless}}
-  {{/each}}
-</ul>
-</div>
 
-  <div class="col-md-6">
-    <ul>
-      {{#each burgers}}
-      {{#if this.devoured}}
-      <li>
-        <p>{{this.burger_name}}</p>
-      </li>
-      <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-      <input type="hidden" name="devoured" value="false">
-      {{/if}}
-      {{/each}}
-    </ul>
-  </div>
+<div class="row ">
+  <center>
+    <div class="col-md-6 ">
+      <div id="ready_to_eat ">
+        {{#each burgers}}
+          {{#unless devoured}}
+          <form action="/{{id}}?_method=PUT " method="POST ">
+            <input type="hidden " name="dev " value="1 ">
+            <div class="input-group ">
+              <li class="form-control ">{{id}}. {{burger_name}}</li>
+                <span class="input-group-btn ">
+                  <button class="btn btn-default devour-button " type="submit ">Devour It!</button>
+                </span>
+            </div>
+          </form>
+          {{/unless}}
+        {{/each}}
+
+      </div>
+    </div>
+    <div class="col-md-6 ">
+      <div id="devoured ">
+        {{#each burgers}}
+          {{#if devoured}}
+          <li>
+            {{this.burger_name}}
+            <form action="/{{this.id}}?_method=PUT " method="POST ">
+              <input class="devBurg " type="hidden " name="dev " value="false ">
+            </form>
+          </li>
+          {{/if}}
+        {{/each}}
+
+      </div>
+    </div>
+  </center>
 </div>
-<form method="POST" action="burger/create" class="create_new_form">
-  <textarea type="text" name="burger"></textarea>
-  <button type="submit">Submit</button>
-  <p>Enter a burger you want to eat Click the "Submit" button.</p>
+<br>
+<div class="buttonHolder ">
+<form method="POST " action="/ " class="create_new_form ">
+  <textarea class="addBurger " type="text " name="name "></textarea>
+  <br>
+  <button class="submit " type="submit ">Submit</button>
+  <p>Enter a burger you want to eat Click the "Submit " button.</p>
 </form>
-
+</div>
